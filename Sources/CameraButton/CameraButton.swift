@@ -118,10 +118,7 @@ public class CameraButton: UIButton, CAAnimationDelegate {
         layer.addSublayer(shapeLayer)
         shapeLayer.fillColor = fillColor.default.cgColor
         shapeLayer.position = CGPoint(x: layer.bounds.midX, y: layer.bounds.midY)
-
-        let diameter = frame.width * 0.87
-        let rect = CGRect(x: -diameter / 2, y: -diameter / 2, width: diameter, height: diameter)
-        shapeLayer.path = UIBezierPath(ovalIn: rect).cgPath
+        shapeLayer.path = UIBezierPath(ovalIn: rect(for: frame.width * 0.87)).cgPath
     }
 
     private func setupProgressLayer() {
@@ -135,9 +132,8 @@ public class CameraButton: UIButton, CAAnimationDelegate {
         progressLayer.position = CGPoint(x: layer.bounds.midX, y: layer.bounds.midY)
 
         let diameter = frame.width
-        let rect = CGRect(x: -diameter / 2, y: -diameter / 2, width: diameter, height: diameter)
         let path = UIBezierPath(
-            roundedRect: rect,
+            roundedRect: rect(for: diameter),
             byRoundingCorners: .allCorners,
             cornerRadii: CGSize(width: diameter, height: diameter)
         )
@@ -180,6 +176,12 @@ public class CameraButton: UIButton, CAAnimationDelegate {
             self?.animateTap(duration: 0.15)
             self?.delegate?.didTap(sender)
         }
+    }
+
+    // MARK: - Utilities
+
+    private func rect(for diameter: CGFloat) -> CGRect {
+        return CGRect(x: -diameter / 2, y: -diameter / 2, width: diameter, height: diameter)
     }
 
     // MARK: - CAAnimationDelegate
