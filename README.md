@@ -47,6 +47,7 @@ NSLayoutConstraint.activate([
 ### Customize
 
 ```Swift
+// Set custom colors
 button.borderColor = .red
 button.fillColor = (.purple, .orange)
 button.progressColor = .green
