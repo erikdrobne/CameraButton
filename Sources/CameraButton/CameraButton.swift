@@ -1,8 +1,11 @@
 import Foundation
 import UIKit
 
+
 public protocol CameraButtonDelegate: AnyObject {
+    /// This method is called on button tap.
     func didTap(_ button: CameraButton)
+    /// This method is called when progress reaches the end of duration.
     func didFinishProgress()
 }
 
@@ -16,6 +19,7 @@ public class CameraButton: UIButton, CAAnimationDelegate {
 
     private (set) public var isRecording = false
 
+    /// This struct contains data for layer animations.
     private struct Animation {
         static let progress = (id: "progress", key: "strokeEnd", index: 0)
         static let tap = (id: "tap", key: "transform.scale", index: 1)
@@ -54,6 +58,7 @@ public class CameraButton: UIButton, CAAnimationDelegate {
 
     // MARK: - Public methods
 
+    /// CameraButton: start progress animation.
     public func start() {
         guard !isRecording else {
             return
@@ -71,6 +76,7 @@ public class CameraButton: UIButton, CAAnimationDelegate {
         })
     }
 
+    /// CameraButton: stop progress animation.
     public func stop() {
         guard isRecording else {
             return
