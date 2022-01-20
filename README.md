@@ -1,10 +1,13 @@
 # CameraButton
 
+![RPReplay_Final1642669292](https://user-images.githubusercontent.com/15943419/150314796-160a77d0-2755-4222-bf40-b1d965f0a97e.GIF)
+![RPReplay_Final1642670033](https://user-images.githubusercontent.com/15943419/150314815-8524644c-9f20-4b74-9afc-acb6871dc877.GIF)
+
 A simple camera button that can be used for photo and video capturing. It's a subclass of the native `UIButton` with attributes for customization.
 
 ## Requirements
 
-iOS 10 or higher 
+**iOS 10.0** or higher
 
 ## Instalation
 
