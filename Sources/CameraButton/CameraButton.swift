@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 public protocol CameraButtonDelegate: AnyObject {
     /// This method is called on button tap.
     func didTap(_ button: CameraButton)
