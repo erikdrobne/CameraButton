@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "camerabutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/erikdrobne/CameraButton",
+      "state" : {
+        "branch" : "main",
+        "revision" : "74bbe6a34dcfe7b00ae3a49284c759e0302aad1c"
+      }
+    }
+  ],
+  "version" : 2
+}
