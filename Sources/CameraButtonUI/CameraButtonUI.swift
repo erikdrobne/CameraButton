@@ -15,7 +15,12 @@ public struct CameraButtonUI: View {
     private var borderColor = Color.purple
     private var fillColor: (default: Color, record: Color) = (.blue, .red)
 
+    private var center: CGPoint {
+        return CGPoint(x: size * 0.5, y: size * 0.5)
+    }
+
     @State private var scalingFactor: CGFloat = 1
+    @State private var percentage: CGFloat = .zero
 
     public init(borderColor: SwiftUI.Color = Color.purple, fillColor: (default: Color, record: Color) = (.blue, .red)) {
         self.borderColor = borderColor
@@ -24,6 +29,7 @@ public struct CameraButtonUI: View {
 
     public var body: some View {
         ZStack {
+            
             Circle()
                 .strokeBorder(borderColor, lineWidth: size * 0.05)
                 .background(Circle().fill(.clear))
@@ -39,7 +45,18 @@ public struct CameraButtonUI: View {
                     }
                 })
                 .animation(.easeInOut(duration: 0.15), value: scalingFactor)
+
+            Circle()
+                .trim(from: 0, to: percentage)
+                .stroke(Color.green ,style: StrokeStyle(lineWidth: size * 0.08, lineCap: .butt))
+                .frame(width: size, height: size)
+                .animation(.easeOut(duration: 2.0), value: percentage) // << animate
+                .onAppear {
+                    self.percentage = 1.0 // << activates animation for 0 to the end
+                }
         }
+        .frame(width: size, height: size)
+        .border(.red)
         .onTapGesture {
             self.scalingFactor = 0.9
         }
