@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		174DA71D28F97ED40044D8BA /* CameraButton */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CameraButton; path = ..; sourceTree = "<group>"; };
 		17DD374528F859AE00BF29E7 /* CameraButtonExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraButtonExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DD374828F859AE00BF29E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DD374A28F859AE00BF29E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		17DD373C28F859AE00BF29E7 = {
 			isa = PBXGroup;
 			children = (
+				174DA71D28F97ED40044D8BA /* CameraButton */,
 				17DD374728F859AE00BF29E7 /* CameraButtonExample */,
 				17DD374628F859AE00BF29E7 /* Products */,
 				17DD375F28F85BCE00BF29E7 /* Frameworks */,
