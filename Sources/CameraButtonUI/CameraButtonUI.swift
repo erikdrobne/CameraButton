@@ -48,15 +48,16 @@ public struct CameraButtonUI: View {
 
             Circle()
                 .trim(from: 0, to: percentage)
-                .stroke(Color.green ,style: StrokeStyle(lineWidth: size * 0.08, lineCap: .butt))
+                .stroke(Color.green, style: StrokeStyle(lineWidth: size * 0.08, lineCap: .round))
+                .padding(size * 0.08/2)
                 .frame(width: size, height: size)
-                .animation(.easeOut(duration: 2.0), value: percentage) // << animate
+                .animation(.easeOut(duration: 2.0), value: percentage)
                 .onAppear {
-                    self.percentage = 1.0 // << activates animation for 0 to the end
+                    self.percentage = 1.0
                 }
         }
         .frame(width: size, height: size)
-        .border(.red)
+        //.border(.red)
         .onTapGesture {
             self.scalingFactor = 0.9
         }
