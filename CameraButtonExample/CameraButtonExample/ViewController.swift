@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
         //setup()
 
-        let controller = UIHostingController(rootView: CameraButtonUI())
+        let controller = UIHostingController(rootView: PhotoView())
         view.addSubview(controller.view)
 
         controller.view.translatesAutoresizingMaskIntoConstraints = false
