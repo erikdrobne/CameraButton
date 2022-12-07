@@ -11,9 +11,10 @@ import CameraButton
 struct PhotoView: View {
 
     @State var isRecording: Bool = false
+    @State var didFinishProgress: Bool = false
 
     var body: some View {
-        CameraButtonUI(progressDuration: 5, isRecording: self.$isRecording)
+        CameraButtonUI(progressDuration: 5, isRecording: self.$isRecording, didFinishProgress: self.$didFinishProgress)
             .simultaneousGesture(
                 TapGesture()
                     .onEnded { _ in
@@ -26,8 +27,8 @@ struct PhotoView: View {
                         isRecording = true
                     }
             )
-            .onChange(of: isRecording, perform: { isRecording in
-                print("record value", isRecording)
+            .onChange(of: isRecording, perform: { [isRecording] newValue in
+                print("isRecording", isRecording, newValue)
             })
     }
 }

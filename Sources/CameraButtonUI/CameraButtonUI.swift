@@ -11,26 +11,32 @@ public struct CameraButtonUI: View {
 
     private typealias ProgressDuration = (record: TimeInterval, cleanup: TimeInterval)
 
-    // MARK: - Public properties
-
-    public let borderColor: Color
-    public let fillColor: (default: Color, record: Color)
-    public let progressColor: Color
-    
-    @Binding public var isRecording: Bool
-
     // MARK: - Private properties
+
+    @Binding private var isRecording: Bool
+    @State private var scalingFactor: CGFloat = 1
+    @State private var percentage = CGFloat.zero
+
+    private let borderColor: Color
+    private let fillColor: (default: Color, record: Color)
+    private let progressColor: Color
 
     private let duration: ProgressDuration
     private let size: CGFloat = 72
+    private let feedback = UIImpactFeedbackGenerator(style: .light)
+
     private var center: CGPoint {
         return CGPoint(x: size * 0.5, y: size * 0.5)
     }
 
-    @State private var scalingFactor: CGFloat = 1
-    @State private var percentage: CGFloat = .zero
-
-    public init(borderColor: Color = .white, fillColor: (default: Color, record: Color) = (.white, .white), progressColor: Color = .red, progressDuration: TimeInterval, isRecording: Binding<Bool>) {
+    public init(
+        fillColor: (`default`: Color, record: Color) = (.white, .white),
+        borderColor: Color = .white,
+        progressColor: Color = .red,
+        progressDuration: TimeInterval,
+        isRecording: Binding<Bool>,
+        didFinishProgress: Binding<Bool>
+    ) {
         self.borderColor = borderColor
         self.fillColor = fillColor
         self.progressColor = progressColor
@@ -66,12 +72,9 @@ public struct CameraButtonUI: View {
                     fillColor.record,
                     style: StrokeStyle(lineWidth: size * 0.08, lineCap: .round)
                 )
+                .rotationEffect(.radians(.pi)/2)
                 .padding(size * 0.01)
                 .frame(width: size, height: size)
-                .animation(.linear(duration: isRecording ? duration.record : duration.cleanup), value: percentage)
-                .onAppear {
-
-                }
         }
         .frame(width: size, height: size)
         .onTapGesture {
@@ -99,22 +102,27 @@ public struct CameraButtonUI: View {
     }
 
     private func clear() {
-        self.percentage = 0
+        withAnimation(.linear(duration: duration.cleanup)) {
+            self.percentage = 0
+        }
     }
 
     private func start() {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        self.percentage = 1.0
+        feedback.impactOccurred()
+
+        withAnimation(.linear(duration: duration.record)) {
+            self.percentage = 1.0
+        }
     }
 
     private func stop() {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        feedback.impactOccurred()
         clear()
     }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        CameraButtonUI(progressDuration: 5, isRecording: .constant(false))
+        CameraButtonUI(progressDuration: 5, isRecording: .constant(false), didFinishProgress: .constant(false))
     }
 }

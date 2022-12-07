@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //setup()
+//        setup()
 
         let controller = UIHostingController(rootView: PhotoView())
         view.addSubview(controller.view)
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             button.widthAnchor.constraint(equalToConstant: 72),
             button.heightAnchor.constraint(equalToConstant: 72),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
 
         button.borderColor = .red
