@@ -14,22 +14,27 @@ struct PhotoView: View {
     @State var didFinishProgress: Bool = false
 
     var body: some View {
-        CameraButtonUI(progressDuration: 5, isRecording: self.$isRecording, didFinishProgress: self.$didFinishProgress)
-            .simultaneousGesture(
-                TapGesture()
-                    .onEnded { _ in
-                        print("tapped")
-                    }
-            )
-            .gesture(
-                LongPressGesture(minimumDuration: 1)
-                    .onChanged { val in
-                        isRecording = true
-                    }
-            )
-            .onChange(of: isRecording, perform: { [isRecording] newValue in
-                print("isRecording", isRecording, newValue)
-            })
+        CameraButtonUI(
+            size: 200,
+            progressDuration: 5,
+            isRecording: self.$isRecording,
+            didFinishProgress: self.$didFinishProgress
+        )
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded { _ in
+                    print("tapped")
+                }
+        )
+        .gesture(
+            LongPressGesture(minimumDuration: 1)
+                .onChanged { val in
+                    isRecording = true
+                }
+        )
+        .onChange(of: isRecording, perform: { [isRecording] newValue in
+            print("isRecording", isRecording, newValue)
+        })
     }
 }
 

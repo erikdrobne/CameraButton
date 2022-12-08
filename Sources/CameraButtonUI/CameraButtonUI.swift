@@ -22,7 +22,7 @@ public struct CameraButtonUI: View {
     private let progressColor: Color
 
     private let duration: ProgressDuration
-    private let size: CGFloat = 72
+    private let size: CGFloat
     private let feedback = UIImpactFeedbackGenerator(style: .light)
 
     private var center: CGPoint {
@@ -30,6 +30,7 @@ public struct CameraButtonUI: View {
     }
 
     public init(
+        size: CGFloat = 72,
         fillColor: (`default`: Color, record: Color) = (.white, .white),
         borderColor: Color = .white,
         progressColor: Color = .red,
@@ -37,6 +38,7 @@ public struct CameraButtonUI: View {
         isRecording: Binding<Bool>,
         didFinishProgress: Binding<Bool>
     ) {
+        self.size = size
         self.borderColor = borderColor
         self.fillColor = fillColor
         self.progressColor = progressColor
@@ -72,7 +74,7 @@ public struct CameraButtonUI: View {
                     fillColor.record,
                     style: StrokeStyle(lineWidth: size * 0.08, lineCap: .round)
                 )
-                .rotationEffect(.radians(.pi)/2)
+                .rotationEffect(-.radians(.pi)/2)
                 .padding(size * 0.01)
                 .frame(width: size, height: size)
         }
