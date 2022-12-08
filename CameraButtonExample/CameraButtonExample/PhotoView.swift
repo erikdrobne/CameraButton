@@ -15,7 +15,7 @@ struct PhotoView: View {
 
     var body: some View {
         CameraButtonUI(
-            size: 200,
+            size: 72,
             progressDuration: 5,
             isRecording: self.$isRecording,
             didFinishProgress: self.$didFinishProgress
