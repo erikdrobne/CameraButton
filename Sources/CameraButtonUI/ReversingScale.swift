@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ReversingScale.swift
 //  
 //
 //  Created by Erik Drobne on 23/11/2022.
