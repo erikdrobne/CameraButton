@@ -31,12 +31,11 @@ public struct CameraButtonUI: View {
 
     public init(
         size: CGFloat = 72,
-        fillColor: (`default`: Color, record: Color) = (.white, .white),
         borderColor: Color = .white,
+        fillColor: (`default`: Color, record: Color) = (.white, .white),
         progressColor: Color = .red,
         progressDuration: TimeInterval,
-        isRecording: Binding<Bool>,
-        didFinishProgress: Binding<Bool>
+        isRecording: Binding<Bool>
     ) {
         self.size = size
         self.borderColor = borderColor
@@ -50,7 +49,7 @@ public struct CameraButtonUI: View {
         ZStack {
             if isRecording {
                 Circle()
-                    .fill(progressColor)
+                    .fill(borderColor)
                     .frame(width: size, height: size)
             } else {
                 Circle()
@@ -71,7 +70,7 @@ public struct CameraButtonUI: View {
             Circle()
                 .trim(from: 0, to: percentage)
                 .stroke(
-                    fillColor.record,
+                    progressColor,
                     style: StrokeStyle(lineWidth: size * 0.08, lineCap: .round)
                 )
                 .rotationEffect(-.radians(.pi)/2)
@@ -125,6 +124,6 @@ public struct CameraButtonUI: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        CameraButtonUI(progressDuration: 5, isRecording: .constant(false), didFinishProgress: .constant(false))
+        CameraButtonUI(progressDuration: 5, isRecording: .constant(false))
     }
 }

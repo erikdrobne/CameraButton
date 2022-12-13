@@ -11,14 +11,15 @@ import CameraButton
 struct PhotoView: View {
 
     @State var isRecording: Bool = false
-    @State var didFinishProgress: Bool = false
 
     var body: some View {
         CameraButtonUI(
             size: 72,
+            borderColor: .red,
+            fillColor: (.purple, .orange),
+            progressColor: .green,
             progressDuration: 5,
-            isRecording: self.$isRecording,
-            didFinishProgress: self.$didFinishProgress
+            isRecording: self.$isRecording
         )
         .simultaneousGesture(
             TapGesture()

@@ -7,7 +7,7 @@ A simple camera button that can be used for photo and video capturing. It's a su
 
 ## Requirements
 
-**iOS 10.0** or higher
+**iOS 14.0** or higher
 
 ## Instalation
 
@@ -26,6 +26,8 @@ dependencies: [
 ```Swift
 import CameraButton
 ```
+
+### UIKit
 
 ### Initialize
 
@@ -69,4 +71,43 @@ The `CameraButtonDelegate` requires you to implement the following methods:
 ```Swift
 func didTap(_ button: CameraButton)
 func didFinishProgress()
+```
+
+### SwiftUI
+
+```Swift
+struct PhotoView: View {
+
+    @State var isRecording: Bool = false
+    @State var didFinishProgress: Bool = false
+
+    var body: some View {
+        CameraButtonUI(
+            size: 72,
+            borderColor: .red,
+            fillColor: (.purple, .orange),
+            progressColor: .green,
+            progressDuration: 5,
+            isRecording: self.$isRecording
+        )
+        // Handle tap gesture
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded { _ in
+                    print("tap")
+                }
+        )
+        // Start recording on Long-press gesture
+        .gesture(
+            LongPressGesture(minimumDuration: 1)
+                .onChanged { val in
+                    isRecording = true
+                }
+        )
+        // Observe state changes
+        .onChange(of: isRecording, perform: { [isRecording] newValue in
+            print("isRecording", isRecording, newValue)
+        })
+    }
+}
 ```
