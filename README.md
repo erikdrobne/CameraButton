@@ -3,7 +3,7 @@
 ![RPReplay_Final1642669292](https://user-images.githubusercontent.com/15943419/150314796-160a77d0-2755-4222-bf40-b1d965f0a97e.GIF)
 ![RPReplay_Final1642670033](https://user-images.githubusercontent.com/15943419/150314815-8524644c-9f20-4b74-9afc-acb6871dc877.GIF)
 
-A simple camera button with attributes for customization that can be used for photo and video capturing.
+A simple camera button that can be used for photo and video capturing.
 
 ## Requirements
 
