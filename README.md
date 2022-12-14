@@ -34,10 +34,9 @@ import CameraButton
 ```Swift
 let button = CameraButton()
 button.delegate = self
-
 view.addSubview(button)
-
 button.translatesAutoresizingMaskIntoConstraints = false
+
 NSLayoutConstraint.activate([
     button.widthAnchor.constraint(equalToConstant: 72),
     button.heightAnchor.constraint(equalToConstant: 72),
